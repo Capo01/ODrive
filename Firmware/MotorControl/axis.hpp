@@ -210,6 +210,7 @@ public:
     State_t& current_state_ = task_chain_[0];
     uint32_t loop_counter_ = 0;
     LockinState_t lockin_state_ = LOCKIN_STATE_INACTIVE;
+    long muv1_; // mult-use variable (MUV) for storing sensor data etc.
 
     // watchdog
     uint32_t watchdog_reset_value_ = 0; //computed from config_.watchdog_timeout in update_watchdog_settings()
@@ -224,6 +225,7 @@ public:
             make_protocol_property("requested_state", &requested_state_),
             make_protocol_ro_property("loop_counter", &loop_counter_),
             make_protocol_ro_property("lockin_state", &lockin_state_),
+            make_protocol_property("muv1", &muv1_),
             make_protocol_object("config",
                 make_protocol_property("startup_motor_calibration", &config_.startup_motor_calibration),
                 make_protocol_property("startup_encoder_index_search", &config_.startup_encoder_index_search),
